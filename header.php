@@ -37,7 +37,7 @@ else $page_id = get_the_ID();
 	<header id="main-header" class="<?php if(@$hcc_options['sections-header-background-type'] == 1) echo @$hcc_options['sections-header-background'] . ' ';?><?php if(@$hcc_options['sections-header-color-type'] == 1) echo @$hcc_options['sections-header-color'];?> <?php echo $header_class?>">
 		<div class="content-wrap">
 			<div class="container">
-				<nav class="navbar navbar-expand-lg navbar-dark navbar-custom-bg">			
+				<nav class="navbar navbar-expand-lg navbar-light navbar-custom-bg">			
 					<a class="navbar-brand" href="<?php echo home_url(); ?>">
 						<span class="<?php if($hcc_options['logo']['id']) echo 'd-md-none';?>">
 						<?php if (has_site_icon()) : ?>

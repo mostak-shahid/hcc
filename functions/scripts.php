@@ -3,10 +3,11 @@
 function hcc_enqueue_scripts() {
 	global $hcc_options;
 	wp_enqueue_script( 'jquery' );	
-	wp_register_style( 'google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Oxygen:300,400,700' );
-	wp_enqueue_style( 'google-font' );
 	wp_register_style( 'font-awesome.min', get_template_directory_uri() . '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' );
 	wp_enqueue_style( 'font-awesome.min' );
+	
+	wp_register_style( 'fonts', get_template_directory_uri() . '/fonts/fonts.css' );
+	wp_enqueue_style( 'fonts' );
 
 	wp_register_style( 'bootstrap.min', get_template_directory_uri() .  '/css/bootstrap.min.css' );
 	wp_enqueue_style( 'bootstrap.min' );

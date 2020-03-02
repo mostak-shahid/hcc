@@ -13,8 +13,20 @@ $sections = (@$from_page_option['Enabled'])?$from_page_option['Enabled']:$from_t
 			<?php if ( have_posts() ) :?>
 				<div id="blogs" class="row">
 					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="col-lg-6">							
-							<?php get_template_part( 'content', get_post_format() ) ?>
+						<div class="col-lg-6 mb-5">
+							<div class="post-<?php echo get_the_ID();?> position-relative post-unit">
+								<?php
+								$atts = 'class="post-feature position-relative"';
+								echo do_shortcode( "[feature-image wrapper_atts='".$atts."' height='350' width='540']" );
+								?>
+								<div class="post-meta d-table w-100 pt-3 pb-3">
+									<div class="post-author d-table-cell">Post by : <?php echo get_author_name()?></div>
+									<div class="post-date d-table-cell">Date : <?php echo get_post_time('d-m-Y'); ?></div>
+								</div>
+								<h4 class="post-header"><?php echo get_the_title() ?></h4>						
+								<a class="hidden-link" href="<?php echo get_the_permalink(); ?>">Read More</a>
+							</div>														
+							<?php // get_template_part( 'content', get_post_format() ) ?>
 						</div>
 					<?php endwhile;?>						
 				</div>
@@ -23,8 +35,8 @@ $sections = (@$from_page_option['Enabled'])?$from_page_option['Enabled']:$from_t
 					the_posts_pagination( array(
 						'show_all' => false,
 						'screen_reader_text' => " ",
-						'prev_text'          => 'Prev',
-						'next_text'          => 'Next',
+						'prev_text'          => '<i class="fa fa-angle-left"></i>',
+						'next_text'          => '<i class="fa fa-angle-right"></i>',
 					) );
 				?>
 				</div>

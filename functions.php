@@ -5,7 +5,7 @@ function disable_mytheme_action() {
 	define('DISALLOW_FILE_EDIT', TRUE);
 	define('DISALLOW_FILE_MODS',true);
 }
-//add_action('init','disable_mytheme_action');
+add_action('init','disable_mytheme_action');
 require_once('functions/theme-init/plugin-update-checker.php');
 $themeInit = Puc_v4_Factory::buildUpdateChecker(
 	'https://raw.githubusercontent.com/mostak-shahid/update/master/hcc.json',
@@ -20,6 +20,7 @@ require_once('functions/widgets.php');
 require_once('functions/custom-comments.php');
 require_once('functions/theme-filter-hooks.php');
 require_once('functions/ajax.php');
+require_once('functions/post-types.php');
 
 require_once('inc/theme-options/ReduxCore/framework.php'); 
 //require_once('inc/theme-options/sample/sample-config.php');

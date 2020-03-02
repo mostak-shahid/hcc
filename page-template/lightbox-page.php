@@ -1,6 +1,13 @@
 <?php /*Template Name: Lightbox Page Template*/ ?>
-<?php get_header() ?>
-<section id="page" class="page-content">
+<?php 
+global $hcc_options;
+$class = $hcc_options['sections-content-class'];
+$from_theme_option = $hcc_options['general-page-sections'];
+$from_page_option = get_post_meta( get_the_ID(), '_hcc_page_section_layout', true );
+$sections = (@$from_page_option['Enabled'])?$from_page_option['Enabled']:$from_theme_option['Enabled'];
+unset($sections['content']);
+?><?php get_header() ?>
+<section id="page" class="page-content <?php if(@$hcc_options['sections-content-background-type'] == 1) echo @$hcc_options['sections-content-background'] . ' ';?><?php if(@$hcc_options['sections-content-color-type'] == 1) echo @$hcc_options['sections-content-color'];?> <?php echo $class ?>">
 	<div class="content-wrap">
 			<?php if ( have_posts() ) :?>
 				<?php while ( have_posts() ) : the_post(); ?>
@@ -24,17 +31,15 @@
 								<div id="gallery" class="row">
 									<?php foreach ( $gallery_images as $attachment_id => $attachment_url ) : ?>
 										<?php $raw_url = wp_get_attachment_url( $attachment_id ) ?>	
-										<div class="col-md-6 col-lg-<?php echo $layout ?> text-center">
-											<div class="img-container">
-												<a href="<?php if ($large_image_size == 'max') echo aq_resize($raw_url, 1920); elseif ($large_image_size == 'container') echo aq_resize($raw_url, 1140); else echo $raw_url ?>" data-fancybox="gallery" data-caption="">
-													<?php 
-													$attachment_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ); 
-													if ($image_width OR $image_height ) $img_url = aq_resize($raw_url, $image_width, $image_height, true);
-													else $img_url = $raw_url;
-													?>
-													<img class="img-fluid img-gallery" src="<?php echo $img_url; ?>" alt="<?php echo $attachment_alt; ?>">
-												</a>
-											</div>
+										<div class="col-md-6 col-lg-<?php echo $layout ?> text-center">											
+											<a class="gallery-preview d-block position-relative" href="<?php if ($large_image_size == 'max') echo aq_resize($raw_url, 1920); elseif ($large_image_size == 'container') echo aq_resize($raw_url, 1140); else echo $raw_url ?>" data-fancybox="gallery" data-caption="">
+												<?php 
+												$attachment_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ); 
+												if ($image_width OR $image_height ) $img_url = aq_resize($raw_url, $image_width, $image_height, true);
+												else $img_url = $raw_url;
+												?>
+												<img class="img-fluid img-gallery" src="<?php echo $img_url; ?>" alt="<?php echo $attachment_alt; ?>">
+											</a>											
 										</div>
 									<?php endforeach; ?>
 								</div>
@@ -50,6 +55,7 @@
 			<?php endif;?>			
 	</div>
 </section>
+<?php if($sections ) { foreach ($sections as $key => $value) { get_template_part( 'template-parts/section', $key );}}?>
 <?php get_footer() ?>
 <?php if($gallery_images) : ?>
 <script>

@@ -11,11 +11,11 @@ jQuery(document).ready(function($){
     $(window).scroll(function(){
         if ($(this).scrollTop() > 100) {
             //$('.scrollup').fadeIn();
-            $('#main-header').addClass('tiny');
+            // $('#main-header').addClass('tiny');
             $('.scrollup').fadeIn();
         } else {
             //$('.scrollup').fadeOut();
-            $('#main-header').removeClass('tiny');
+            // $('#main-header').removeClass('tiny');
             $('.scrollup').fadeOut();
         }
     });
@@ -63,6 +63,7 @@ jQuery(document).ready(function($){
     $('#section-banner-owl .owl-next').html('<i class="fa fa-angle-right"></i>');
     $('#section-feature .slider-part .owl-prev').html('<i class="fa fa-arrow-circle-left"></i>');
     $('#section-feature .slider-part .owl-next').html('<i class="fa fa-arrow-circle-right"></i>');
+    $('.required').attr('required',true);
 });
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {

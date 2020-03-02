@@ -14,23 +14,27 @@ do_action( 'action_before_banner', $page_details );
 	<?php else : ?>
 		<div <?php if ( $select == 'banner' ) echo 'class="static-banner"'; else echo 'id="section-banner-owl" class="owl-carousel owl-theme"';   ?>>
 			<?php foreach ($slides as $slide) : ?>
-				<div class="wrapper">
-					<?php echo wp_get_attachment_image( $slide["attachment_id"], 'full', false, array( 'class' => 'img-fluid img-banner', 'alt' => $alt_tag['inner'] . strip_tags(do_shortcode( $slide["title"] )) )) ?>
+				<div class="wrapper" style="background-image: url(<?php echo wp_get_attachment_url( $slide["attachment_id"] ); ?>);">
+					<?php // echo wp_get_attachment_image( $slide["attachment_id"], 'full', false, array( 'class' => 'img-fluid img-banner', 'alt' => $alt_tag['inner'] . strip_tags(do_shortcode( $slide["title"] )) )) ?>
 					<?php do_action( 'action_before_banner_content', $page_details ); ?>
 					<div class="banner-content">
 						<div class="container">
-							<div class="banner-text">
-								<?php if ($slide["title"]) : ?>
-								<h2 class="banner-title"><?php echo do_shortcode( $slide["title"] ) ?></h2>
-								<?php endif; ?>
-								<?php if ($slide["description"]) : ?>
-								<div class="banner-desc">
-									<?php echo do_shortcode(  $slide["description"] )?>					
+							<div class="row justify-content-lg-end">
+								<div class="col-lg-6">
+									<div class="banner-text text-white">
+										<?php if ($slide["title"]) : ?>
+										<h2 class="banner-title"><?php echo do_shortcode( $slide["title"] ) ?></h2>
+										<?php endif; ?>
+										<?php if ($slide["description"]) : ?>
+										<div class="banner-desc">
+											<?php echo do_shortcode(  $slide["description"] )?>					
+										</div>
+										<?php endif; ?>
+										<?php if($slide["link_url"] AND $slide["link_title"]) : ?>
+											<a class="btn rounded-0 btn-banner mt-4" href="<?php echo do_shortcode( $slide["link_url"] ) ?>" <?php if ($slide["target"]) echo 'target="_blank"'; ?>><?php echo do_shortcode( $slide["link_title"] )?></a>
+										<?php endif; ?>
+									</div>									
 								</div>
-								<?php endif; ?>
-								<?php if($slide["link_url"] AND $slide["link_title"]) : ?>
-									<a class="btn btn-outline-light rounded-0 mt-3" href="<?php echo do_shortcode( $slide["link_url"] ) ?>" <?php if ($slide["target"]) echo 'target="_blank"'; ?>><?php echo do_shortcode( $slide["link_title"] )?></a>
-								<?php endif; ?>
 							</div>
 						</div>	
 					</div>

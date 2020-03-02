@@ -18,7 +18,7 @@ if ( ! function_exists( 'hcc_setup' ) ) :
 		load_theme_textdomain( 'theme', get_template_directory() . '/languages' );
 		register_nav_menus( array(
 			'mainmenu' => __('Main Menu', 'hcc'),
-			'mobilemenu' => __('Mobile Menu', 'hcc'),
+			'footermenu' => __('Footer Menu', 'hcc'),
 		));
 		add_theme_support( 'html5', array(
 			'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
